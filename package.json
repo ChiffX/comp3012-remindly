@@ -1,0 +1,25 @@
+{
+  "name": "remindlyproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChiffX/comp3012-remindly.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChiffX/comp3012-remindly/issues"
+  },
+  "homepage": "https://github.com/ChiffX/comp3012-remindly#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-ejs-layouts": "^2.5.1",
+    "nodemon": "^2.0.16"
+  }
+}
