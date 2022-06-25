@@ -41,11 +41,31 @@ let remindersController = {
   },
 
   update: (req, res) => {
-    // implement this code
+    let reminderToFind = req.params.id;
+    
+    let searchResult = database.cindy.reminders.find(function (reminder) {
+      return reminder.id == reminderToFind;
+    });
+
+    searchResult.title       = req.body.title;
+    searchResult.description = req.body.description;
+
+    if(req.body.completed === "true"){
+      searchResult.completed = true;
+    } else {
+      searchResult.completed = false;
+    }
+
+    res.render("reminder/single-reminder", { reminderItem: searchResult });
   },
 
   delete: (req, res) => {
-    // Implement this code
+    let reminderId = req.params.id;
+    
+    database.cindy.reminders = database.cindy.reminders.filter(function(reminder) { 
+      return reminder.id != reminderId; 
+    });
+    res.redirect("/reminders");
   },
 };
 
