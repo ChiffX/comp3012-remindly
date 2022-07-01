@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated, isAdmin } = require("../middleware/checkAuth");
-const reminderController = require("../controllers/reminder_controller");
+const reminderController = require("../controllers/reminderController");
 
 
 router.get("/", ensureAuthenticated, reminderController.list);
