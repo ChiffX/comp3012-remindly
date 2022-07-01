@@ -21,7 +21,6 @@ app.use(
 
 const passport = require("./middleware/passport");
 const authRoute = require("./routes/authRoute");
-const indexRoute = require("./routes/indexRoute");
 const reminderRoute = require("./routes/reminderRoute");
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -31,7 +30,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-app.use("/", indexRoute);
 app.use("/auth", authRoute);
 app.use("/reminder", reminderRoute);
 app.use("/reminders", reminderRoute);
