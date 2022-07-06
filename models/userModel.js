@@ -4,12 +4,14 @@ const database = [
     name: "Jimmy Smith",
     email: "jimmy123@gmail.com",
     password: "jimmy123!",
+    reminders: [{id: 1, title: "abc", description: "abcabc", completed: false}],
   },
   {
     id: 2,
     name: "Johnny Doe",
     email: "johnny123@gmail.com",
     password: "johnny123!",
+    reminders: [{id: 1, title: "cba", description: "cbacba", completed: true}],
   },
   {
     id: 3,
@@ -25,7 +27,7 @@ const userModel = {
     if (user) {
       return user;
     }
-    // throw new Error(`Couldn't find user with email: ${email}`);
+    throw new Error(`Couldn't find user with email: ${email}`);
   },
   findById: (id) => {
     const user = database.find((user) => user.id === id);

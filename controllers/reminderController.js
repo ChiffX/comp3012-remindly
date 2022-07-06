@@ -1,8 +1,23 @@
-let database = require("../database");
+// let database = require("../database");
+let database = require("../models/userModel");
+let userController = require("./userController");
 
 let remindersController = {
   list: (req, res) => {
-    res.render("reminder/index", { reminders: database.cindy.reminders });
+    const activeUser = userController.getUserById(req.user.id);
+    const activeUserId = activeUser.id;
+
+    let activeUserReminders = [];
+
+    for(let user of database.database){
+      console.log(user);
+      if(user['id'] === activeUserId){
+        activeUserReminders = user['reminders'];
+      }
+    }
+    
+    console.log(activeUserReminders);
+    res.render("reminder/index", { reminders: activeUserReminders });
   },
 
   new: (req, res) => {
