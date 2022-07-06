@@ -30,7 +30,7 @@ let remindersController = {
     const activeUserReminders = userController.getUserById(req.user.id).reminders;
     
     let reminder = {
-      id: activeUserReminders.length + 1,
+      id: activeUserReminders[activeUserReminders.length - 1]['id'] + 1,
       title: req.body.title,
       description: req.body.description,
       completed: false,
