@@ -1,5 +1,5 @@
 let userController = require("./userController");
-let { database } = require("../models/userModel");
+const database = require("../models/userModel").database;
 
 let remindersController = {
   list: (req, res) => {
@@ -30,7 +30,7 @@ let remindersController = {
     const activeUserReminders = userController.getUserById(req.user.id).reminders;
     
     let reminder = {
-      id: activeUserReminders[activeUserReminders.length - 1]['id'] + 1,
+      id: (activeUserReminders.length === 0) ? 1 : activeUserReminders[activeUserReminders.length - 1]['id'] + 1,
       title: req.body.title,
       description: req.body.description,
       completed: false,
