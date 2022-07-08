@@ -23,6 +23,7 @@ const passport = require("./middleware/passport");
 const authRoute = require("./routes/authRoute");
 const reminderRoute = require("./routes/reminderRoute");
 const dashboardRoute = require("./routes/dashboardRoute");
+const adminRoute = require("./routes/adminRoute");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
@@ -35,6 +36,7 @@ app.use("/auth", authRoute);
 app.use("/reminder", reminderRoute);
 app.use("/reminders", reminderRoute);
 app.use("/dashboard", dashboardRoute);
+app.use("/admin", adminRoute);
 
 app.listen(3001, function () {
   console.log(

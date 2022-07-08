@@ -34,6 +34,7 @@ function getUserByGitHubIdOrCreate(profile) {
         id: profileId,
         name: profile.displayName,
         reminders: [],
+        role: "user",
       }
     )
     user = userModel.findById(profileId);
