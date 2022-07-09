@@ -28,7 +28,7 @@ const passport = require("./middleware/passport");
 const authRoute = require("./routes/authRoute");
 const reminderRoute = require("./routes/reminderRoute");
 const dashboardRoute = require("./routes/dashboardRoute");
-const adminRoute = require("./routes/adminRoute");
+// const adminRoute = require("./routes/adminRoute");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
@@ -44,14 +44,12 @@ app.use("/dashboard", dashboardRoute);
 // app.use("/admin", adminRoute);
 
 app.get("/admin", isAdmin, (req, res) => {
-  let activeSessions = sessionStore.all(function (err, sessions) {
+  sessionStore.all(function (err, sessions) {
     if (err) {
       console.log(err);
     }
-    return (null, sessions);
+    res.render("admin/index", { user: req.user, sessions: sessions});
   })
-  console.log(activeSessions);
-  res.render("admin/index", { user: req.user, sessions: activeSessions});
 });
 
 app.listen(3001, function () {
