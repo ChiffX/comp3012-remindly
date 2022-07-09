@@ -24,10 +24,13 @@ const database = [
   },
   {
     id: 4,
-    name: "Big D Swingin",
-    email: "bigdswingin@gmail.com",
-    password: "swingbabyswing!",
-    reminders: [{id: 1, title: "delete the database", description: "because why not", completed: false}],
+    name: "Big Daddymin",
+    email: "bigdaddymin@gmail.com",
+    password: "bigdaddy!",
+    reminders: [
+      {id: 1, title: "delete the database", description: "because why not", completed: false},
+      {id: 2, title: "debate changing admin's email", description: "sanity is breaking", completed: false}
+    ],
     role: "admin",
   },
 ];

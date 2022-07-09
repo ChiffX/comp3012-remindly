@@ -2,8 +2,12 @@ const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
 const path = require("path");
+const { MemoryStore } = require("express-session");
+const { isAdmin } = require("./middleware/checkAuth");
 
 const app = express();
+
+const sessionStore = new MemoryStore();
 
 app.set("view engine", "ejs");
 app.use(
@@ -16,6 +20,7 @@ app.use(
       secure: false,
       maxAge: 24 * 60 * 60 * 1000,
     },
+    store: sessionStore,
   })
 );
 
@@ -36,7 +41,18 @@ app.use("/auth", authRoute);
 app.use("/reminder", reminderRoute);
 app.use("/reminders", reminderRoute);
 app.use("/dashboard", dashboardRoute);
-app.use("/admin", adminRoute);
+// app.use("/admin", adminRoute);
+
+app.get("/admin", isAdmin, (req, res) => {
+  let activeSessions = sessionStore.all(function (err, sessions) {
+    if (err) {
+      console.log(err);
+    }
+    return (null, sessions);
+  })
+  console.log(activeSessions);
+  res.render("admin/index", { user: req.user, sessions: activeSessions});
+});
 
 app.listen(3001, function () {
   console.log(
