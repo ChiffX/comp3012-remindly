@@ -49,7 +49,23 @@ app.get("/admin", isAdmin, (req, res) => {
       console.log(err);
     }
     res.render("admin/index", { user: req.user, sessions: sessions});
-  })
+  });
+});
+
+app.post("/admin/delete/:id", isAdmin, (req, res) => {
+  let sessionToDestroy = req.params.id;
+  
+  sessionStore.destroy(sessionToDestroy, function (err) {
+    if (err) {
+      console.log(err);
+    }
+    sessionStore.all(function (err, sessions) {
+      if (err) {
+        console.log(err);
+      }
+      res.render("admin/index", { user: req.user, sessions: sessions});
+    });
+  });
 });
 
 app.listen(3001, function () {
